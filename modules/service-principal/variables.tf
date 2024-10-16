@@ -1,4 +1,4 @@
-variable "application_id" {
+variable "application_client_id" {
   description = "The application ID (client ID) of the application for which to create a service principal."
   type        = string
 }

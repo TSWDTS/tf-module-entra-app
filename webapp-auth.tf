@@ -48,10 +48,10 @@ data "azuread_application_published_app_ids" "well_known" {
 }
 
 module "service_principal_msgraph" {
-  count          = var.support_web_app_auth ? 1 : 0
-  source         = "./modules/service-principal"
-  application_id = data.azuread_application_published_app_ids.well_known[0].result.MicrosoftGraph
-  use_existing   = true
+  count                 = var.support_web_app_auth ? 1 : 0
+  source                = "./modules/service-principal"
+  application_client_id = data.azuread_application_published_app_ids.well_known[0].result.MicrosoftGraph
+  use_existing          = true
 }
 
 resource "azuread_service_principal_delegated_permission_grant" "web_app_grant" {

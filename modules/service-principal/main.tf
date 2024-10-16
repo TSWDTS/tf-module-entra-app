@@ -3,7 +3,7 @@ locals {
 }
 
 resource "azuread_service_principal" "this" {
-  application_id               = var.application_id
+  client_id                    = var.application_client_id
   app_role_assignment_required = var.app_role_assignment_required
   owners                       = var.owners
   use_existing                 = var.use_existing

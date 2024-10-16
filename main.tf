@@ -144,19 +144,19 @@ resource "azuread_application" "this" {
 }
 
 resource "azuread_application_password" "this" {
-  count                 = local.generate_password ? 1 : 0
-  application_object_id = azuread_application.this.object_id
-  display_name          = var.display_name
-  end_date              = var.end_date
-  end_date_relative     = var.end_date_relative
-  rotate_when_changed   = var.rotate_when_changed
-  start_date            = var.start_date
+  count               = local.generate_password ? 1 : 0
+  application_id      = azuread_application.this.object_id
+  display_name        = var.display_name
+  end_date            = var.end_date
+  end_date_relative   = var.end_date_relative
+  rotate_when_changed = var.rotate_when_changed
+  start_date          = var.start_date
 }
 
 module "service_principal" {
   count                        = var.create_service_principal ? 1 : 0
   source                       = "./modules/service-principal"
-  application_id               = azuread_application.this.application_id
+  application_client_id        = azuread_application.this.client_id
   owners                       = var.sp_owners
   app_role_assignment_required = var.sp_app_role_assignment_required
   enterprise_tag               = var.sp_enterprise_tag
