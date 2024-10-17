@@ -145,7 +145,7 @@ resource "azuread_application" "this" {
 
 resource "azuread_application_password" "this" {
   count               = local.generate_password ? 1 : 0
-  application_id      = azuread_application.this.object_id
+  application_id      = azuread_application.this.id
   display_name        = var.display_name
   end_date            = var.end_date
   end_date_relative   = var.end_date_relative
